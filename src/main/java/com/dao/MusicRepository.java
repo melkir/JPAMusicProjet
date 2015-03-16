@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.bean.Music;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by melkir on 13/03/15.
  */
-public interface IMusicDAO extends CrudRepository<Music, Long> {
+public interface MusicRepository extends CrudRepository<Music, Long> {
 
     List<Music> findByTitle(String title);
 
@@ -19,6 +20,7 @@ public interface IMusicDAO extends CrudRepository<Music, Long> {
 
     List<Music> findAll();
 
-//    List<Music> findByTitleOrAlbumOrArtist(String name);
+    @Query("SELECT m FROM Music m WHERE m.title LIKE CONCAT('%',:name,'%') OR m.album LIKE CONCAT('%',:name,'%') OR m.artist LIKE CONCAT('%',:name,'%')")
+    List<Music> findByTitleOrAlbumOrArtist(@Param("name") String name);
 
 }

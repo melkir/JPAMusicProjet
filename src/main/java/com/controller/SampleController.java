@@ -16,6 +16,7 @@ public class SampleController {
 
     /**
      * Simple request mapping hello world
+     *
      * @return String Hello World
      */
     @RequestMapping("/")
@@ -26,7 +27,8 @@ public class SampleController {
 
     /**
      * Use mvc model view with Thymeleaf and URI
-     * @param name /greeting?name=Melkir
+     *
+     * @param name  /greeting?name=Melkir
      * @param model the attribute to pass to the view
      * @return Hello World with a view
      */

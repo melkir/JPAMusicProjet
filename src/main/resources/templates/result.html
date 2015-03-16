@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handing Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Result</h1>
+<p th:text="'Id: ' + ${music.id}" />
+<p th:text="'Titre: ' + ${music.title}" />
+<p th:text="'Artiste: ' + ${music.artist}" />
+<p th:text="'Album: ' + ${music.album}" />
+
+<a href="/music/add">Submit another music</a>
+</body>
+</html>
