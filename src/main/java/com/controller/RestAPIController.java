@@ -27,8 +27,38 @@ public class RestAPIController {
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public List<Music> find(@PathVariable String name) {
+    public List<Music> findMusic(@PathVariable String name) {
         return service.findByTitleOrAlbumOrArtist(name);
+    }
+
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public Music findById(@PathVariable int id) {
+        return service.findById(id);
+    }
+
+    @RequestMapping(value = "/album/{name}", method = RequestMethod.GET)
+    public List<Music> findByAlbum(@PathVariable String name) {
+        return service.findByAlbum(name);
+    }
+
+    @RequestMapping(value = "/artist/{name}", method = RequestMethod.GET)
+    public List<Music> findByArtist(@PathVariable String name) {
+        return service.findByArtist(name);
+    }
+
+    @RequestMapping(value = "/title/{name}", method = RequestMethod.GET)
+    public List<Music> findByTitle(@PathVariable String name) {
+        return service.findByTitle(name);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public String deleteById(@PathVariable("id") Integer id) {
+        try {
+            service.delete(id);
+            return String.format("Music [%s] successfully deleted", id); // uses the delete() method inherited from CrudRepository
+        } catch (Exception e) {
+            return String.format("A problem occurred when deleting Music [%s]", e.getMessage());
+        }
     }
 
 }
