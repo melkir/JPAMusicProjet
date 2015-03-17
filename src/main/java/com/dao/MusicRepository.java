@@ -10,7 +10,9 @@ import java.util.List;
 /**
  * Created by melkir on 13/03/15.
  */
-public interface MusicRepository extends CrudRepository<Music, Long> {
+public interface MusicRepository extends CrudRepository<Music, Integer> {
+
+    Music findById(int id);
 
     List<Music> findByTitle(String title);
 
