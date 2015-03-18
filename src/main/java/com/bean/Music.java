@@ -20,10 +20,10 @@ public class Music {
     public Music() {
     }
 
-    public Music(String album, String artist, String title) {
-        this.album = album;
-        this.artist = artist;
+    public Music(String title, String artist, String album) {
         this.title = title;
+        this.artist = artist;
+        this.album = album;
     }
 
     public Integer getId() {

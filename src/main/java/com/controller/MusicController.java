@@ -37,6 +37,11 @@ public class MusicController {
         return "tabmusic";
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public void deleteById(@PathVariable("id") Integer id) {
+        service.delete(id);
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String musicForm(Model model) {
         model.addAttribute("music", new Music());

@@ -11,6 +11,7 @@
         <th>Titre</th>
         <th>Artiste</th>
         <th>Album</th>
+        <th>&nbsp;</th>
     </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
         <td th:text="${music.title}"></td>
         <td th:text="${music.artist}"></td>
         <td th:text="${music.album}"></td>
+        <td><a th:href="@{delete/{id}(id=${music.id})}">Supprimer</a></td>
     </tr>
     </tbody>
 </table>
