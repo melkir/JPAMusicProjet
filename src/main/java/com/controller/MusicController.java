@@ -34,19 +34,23 @@ public class MusicController {
         return "tabmusic";
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String updateById(@PathVariable("id") Integer id, Model model) {
         Music music = service.findOne(id);
         model.addAttribute("music", music);
         return "formUpdate";
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String musicUpdate(@PathVariable("id") Integer id, @ModelAttribute Music music, Model model) {
-        Music musicNew = service.update(id, music);
-        service.save(musicNew);
-        model.addAttribute("music", music);
-        return "result";
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public String musicUpdate(@PathVariable("id") Integer id, @ModelAttribute Music music) {
+        try {
+            Music musicNew = service.update(id, music);
+            service.save(musicNew);
+            return String.format("Music [%s] successfully edited", id);
+        } catch (Exception e) {
+            return String.format("A problem occurred when editing Music [%s]", e.getMessage());
+        }
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

@@ -58,8 +58,8 @@ public class RestAPIController {
         }
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String updateMusic(@PathVariable("id") Integer id, @RequestBody Music music) {
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String editMusic(@PathVariable("id") Integer id, @RequestBody Music music) {
         try {
             Music musicNew = service.update(id, music);
             service.save(musicNew);

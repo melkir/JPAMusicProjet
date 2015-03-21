@@ -5,12 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+<a th:href="@{add}">Ajouter une musique</a>
 <table border="1">
     <thead>
     <tr>
         <th>Titre</th>
         <th>Artiste</th>
         <th>Album</th>
+        <th>&nbsp;</th>
         <th>&nbsp;</th>
     </tr>
     </thead>
@@ -19,6 +21,7 @@
         <td th:text="${music.title}"></td>
         <td th:text="${music.artist}"></td>
         <td th:text="${music.album}"></td>
+        <td><a th:href="@{edit/{id}(id=${music.id})}">Modifier</a></td>
         <td><a th:href="@{delete/{id}(id=${music.id})}">Supprimer</a></td>
     </tr>
     </tbody>
