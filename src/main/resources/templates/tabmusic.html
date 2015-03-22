@@ -3,10 +3,11 @@
 <head>
     <title>Liste des musiques</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.css}" rel="stylesheet"/>
 </head>
 <body>
 <a th:href="@{add}">Ajouter une musique</a>
-<table border="1">
+<table class="table table-bordered">
     <thead>
     <tr>
         <th>Titre</th>
