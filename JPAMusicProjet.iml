@@ -98,5 +98,7 @@
     <orderEntry type="library" exported="" name="Gradle: org.slf4j:jul-to-slf4j:1.7.10" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.10" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.apache.tomcat:tomcat-juli:8.0.20" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.webjars:bootstrap:3.3.4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.webjars:jquery:1.11.1" level="project" />
   </component>
 </module>

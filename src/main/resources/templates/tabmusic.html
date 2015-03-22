@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Liste des musiques</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.css}" rel="stylesheet"/>
-</head>
+<head th:include="layout :: htmlhead" th:with="title='Liste de musiques'"></head>
+
 <body>
-<a th:href="@{add}">Ajouter une musique</a>
+
+<div class="text-center" style="padding-bottom: 5px; padding-top: 5px">
+    <a class="btn btn-primary" role="button" th:href="@{add}">Ajouter une musique</a>
+</div>
+
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -22,10 +23,19 @@
         <td th:text="${music.title}"></td>
         <td th:text="${music.artist}"></td>
         <td th:text="${music.album}"></td>
-        <td><a th:href="@{edit/{id}(id=${music.id})}">Modifier</a></td>
-        <td><a th:href="@{delete/{id}(id=${music.id})}">Supprimer</a></td>
+        <td>
+            <a th:href="@{edit/{id}(id=${music.id})}">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{delete/{id}(id=${music.id})}">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </a>
+        </td>
     </tr>
     </tbody>
 </table>
+
 </body>
 </html>

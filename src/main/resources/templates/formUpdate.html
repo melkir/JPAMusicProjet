@@ -1,16 +1,38 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Handing Form Submission</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+<head th:include="layout :: htmlhead" th:with="title='Edit music'"></head>
+
 <body>
-<h1>Form</h1>
-<form action="#" th:action="@{/music/edit/{id}(id=${music.id})}" th:object="${music}" method="post">
-    <p>Titre: <input type="text" th:field="*{title}" /></p>
-    <p>Artiste: <input type="text" th:field="*{artist}" /></p>
-    <p>Album: <input type="text" th:field="*{album}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+<form class="form-horizontal" action="#" th:action="@{/music/edit/{id}(id=${music.id})}" th:object="${music}" method="post">
+    <fieldset>
+        <legend>Modification d'une musique</legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="titleinput">Titre</label>
+            <div class="col-md-2">
+                <input id="titleinput" type="text" class="form-control input-md" th:field="*{title}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="artistinput">Artiste</label>
+            <div class="col-md-2">
+                <input id="artistinput" type="text" class="form-control input-md" th:field="*{artist}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="albuminput">Album</label>
+            <div class="col-md-2">
+                <input id="albuminput" type="text" class="form-control input-md" th:field="*{album}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="submitbutton"></label>
+            <div class="col-md-2">
+                <button id="submitbutton" class="btn btn-primary pull-right">Valider</button>
+            </div>
+        </div>
+    </fieldset>
 </form>
+
 </body>
 </html>
