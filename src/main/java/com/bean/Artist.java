@@ -1,5 +1,7 @@
 package com.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Artist {
     private String name;
     private String biography;
     @OneToMany
+    @JsonIgnore
     private List<Product> products = new ArrayList<Product>();
     @ManyToMany
     private List<Genre> genres = new ArrayList<Genre>();
@@ -64,6 +67,14 @@ public class Artist {
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void addGenre(Genre genre) {
+        genres.add(genre);
     }
 
 }

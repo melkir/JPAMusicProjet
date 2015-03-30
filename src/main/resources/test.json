@@ -6,30 +6,38 @@
       "id": 1,
       "name": "B",
       "biography": null,
-      "products": [],
       "genres": []
     },
     "album": {
       "id": 1,
       "title": "C",
-      "artist": null,
+      "artist": {
+        "id": 1,
+        "name": "B",
+        "biography": null,
+        "genres": []
+      },
       "tracks": 0
     }
   },
   {
-    "id": 4,
-    "title": "Hello",
+    "id": 3,
+    "title": "Hey",
     "artist": {
-      "id": 2,
+      "id": 1,
       "name": "B",
       "biography": null,
-      "products": [],
       "genres": []
     },
     "album": {
-      "id": 3,
+      "id": 1,
       "title": "C",
-      "artist": null,
+      "artist": {
+        "id": 1,
+        "name": "B",
+        "biography": null,
+        "genres": []
+      },
       "tracks": 0
     }
   }

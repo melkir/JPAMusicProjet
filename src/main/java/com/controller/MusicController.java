@@ -22,7 +22,7 @@ import java.util.List;
 public class MusicController {
 
     @Autowired
-    MusicRepository service;
+    MusicRepository musicRepository;
     @Autowired
     ArtistRepository artistRepository;
     @Autowired
@@ -30,21 +30,21 @@ public class MusicController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String show(Model model) {
-        final List<Music> list = service.findAll();
+        final List<Music> list = musicRepository.findAll();
         model.addAttribute("listMusics", list);
         return "tabmusic";
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public String find(@PathVariable String name, Model model) {
-        final List<Music> list = service.findByTitleOrAlbumOrArtist(name);
+        final List<Music> list = musicRepository.findByTitleOrAlbumOrArtist(name);
         model.addAttribute("listMusics", list);
         return "tabmusic";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String updateById(@PathVariable("id") Integer id, Model model) {
-        Music music = service.findOne(id);
+        Music music = musicRepository.findOne(id);
         model.addAttribute("music", music);
         return "formUpdate";
     }
@@ -53,8 +53,9 @@ public class MusicController {
     @ResponseBody
     public String musicUpdate(@PathVariable("id") Integer id, @ModelAttribute Music music) {
         try {
-            Music musicNew = service.update(id, music);
-            service.save(musicNew);
+            checkIfArtistOrAlbumAlreadyExist(music);
+            music = musicRepository.update(id, music);
+            musicRepository.save(music);
             return String.format("Music [%s] successfully edited", id);
         } catch (Exception e) {
             return String.format("A problem occurred when editing Music [%s]", e.getMessage());
@@ -65,7 +66,7 @@ public class MusicController {
     @ResponseBody
     public String deleteById(@PathVariable("id") Integer id) {
         try {
-            service.delete(id);
+            musicRepository.delete(id);
             return String.format("Music [%s] successfully deleted", id); // uses the delete() method inherited from CrudRepository
         } catch (Exception e) {
             return String.format("A problem occurred when deleting Music [%s]", e.getMessage());
@@ -80,10 +81,25 @@ public class MusicController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String musicSubmit(@ModelAttribute Music music, Model model) {
-        artistRepository.save(music.getArtist());
-        albumRepository.save(music.getAlbum());
-        service.save(music);
+        checkIfArtistOrAlbumAlreadyExist(music);
+        Artist artist = artistRepository.findOne(music.getArtist().getId());
+        artist.addProduct(music);
+        Album album = albumRepository.findOne(music.getAlbum().getId());
+        album.setArtist(music.getArtist());
+        musicRepository.save(music);
         model.addAttribute("music", music);
         return "result";
     }
+
+    private void checkIfArtistOrAlbumAlreadyExist(Music music) {
+        // Check if artist name already exist
+        Artist artist = artistRepository.findByName(music.getArtist().getName());
+        if(artist != null) music.setArtist(artist);
+        else artistRepository.save(music.getArtist());
+        // Check if album name already exist
+        Album album = albumRepository.findByTitle(music.getAlbum().getTitle());
+        if(album != null) music.setAlbum(album);
+        else albumRepository.save(music.getAlbum());
+    }
+
 }
