@@ -28,7 +28,7 @@ configurations {
 }
 
 dependencies {
-    compile ("org.hsqldb:hsqldb")
+    compile("org.hsqldb:hsqldb")
     compile("org.webjars:bootstrap:3.3.4")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
