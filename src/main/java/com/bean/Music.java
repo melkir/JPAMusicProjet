@@ -1,27 +1,30 @@
 package com.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  * Created by melkir on 15/03/15.
  */
 @Entity
 public class Music extends Product {
-    private String album;
+    @OneToOne
+    private Album album;
 
     public Music() {
     }
 
-    public Music(String title, String artist, String album) {
+    public Music(String title, Artist artist, Album album) {
         super(title, artist);
         this.album = album;
     }
 
-    public String getAlbum() {
+    public Album getAlbum() {
         return album;
     }
 
-    public void setAlbum(String album) {
+    public void setAlbum(Album album) {
         this.album = album;
     }
+
 }

@@ -14,10 +14,10 @@ public class Artist {
     private Integer id;
     private String name;
     private String biography;
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
-    private List<Product> products = new ArrayList<>();
-    @ManyToMany(mappedBy = "artists")
-    private List<Genre> genres = new ArrayList<>();
+    @OneToMany
+    private List<Product> products = new ArrayList<Product>();
+    @ManyToMany
+    private List<Genre> genres = new ArrayList<Genre>();
 
     public Artist() {
     }
@@ -54,8 +54,16 @@ public class Artist {
         return products;
     }
 
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     public List<Genre> getGenres() {
         return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
 }

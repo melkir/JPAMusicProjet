@@ -22,7 +22,7 @@
     <tr th:each="music : ${listMusics}">
         <td th:text="${music.title}"></td>
         <td th:text="${music.artist.name}"></td>
-        <td th:text="${music.album}"></td>
+        <td th:text="${music.album.title}"></td>
         <td>
             <a th:href="@{edit/{id}(id=${music.id})}">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

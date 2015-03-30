@@ -11,15 +11,15 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Artist artist;
 
     public Product() {
     }
 
-    public Product(String title, String artist) {
+    public Product(String title, Artist artist) {
         this.title = title;
-        this.artist = new Artist(artist);
+        this.artist = artist;
     }
 
     public Integer getId() {

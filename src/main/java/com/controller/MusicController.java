@@ -1,7 +1,9 @@
 package com.controller;
 
+import com.bean.Album;
 import com.bean.Artist;
 import com.bean.Music;
+import com.dao.AlbumRepository;
 import com.dao.ArtistRepository;
 import com.dao.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class MusicController {
     MusicRepository service;
     @Autowired
     ArtistRepository artistRepository;
+    @Autowired
+    AlbumRepository albumRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String show(Model model) {
@@ -77,6 +81,7 @@ public class MusicController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String musicSubmit(@ModelAttribute Music music, Model model) {
         artistRepository.save(music.getArtist());
+        albumRepository.save(music.getAlbum());
         service.save(music);
         model.addAttribute("music", music);
         return "result";

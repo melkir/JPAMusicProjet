@@ -15,8 +15,8 @@ public class Genre {
     private Integer id;
     private String name;
     private String description;
-    @ManyToMany
-    private List<Artist> artists = new ArrayList<>();
+    @ManyToMany(mappedBy = "genres")
+    private List<Artist> artists = new ArrayList<Artist>();
 
     public Genre() {
     }
@@ -45,7 +45,7 @@ public class Genre {
         this.description = description;
     }
 
-    public Collection<Artist> getArtists() {
+    public List<Artist> getArtists() {
         return artists;
     }
 
