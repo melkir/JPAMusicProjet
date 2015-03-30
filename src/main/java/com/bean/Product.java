@@ -11,7 +11,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Artist artist;
 
     public Product() {
@@ -30,20 +30,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getArtist() {
-        return artist.getName();
-    }
-
-    public void setArtist(String artist) {
-        this.artist.setName(artist);
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 
 }

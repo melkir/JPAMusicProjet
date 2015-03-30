@@ -21,7 +21,7 @@
     <tbody>
     <tr th:each="music : ${listMusics}">
         <td th:text="${music.title}"></td>
-        <td th:text="${music.artist}"></td>
+        <td th:text="${music.artist.name}"></td>
         <td th:text="${music.album}"></td>
         <td>
             <a th:href="@{edit/{id}(id=${music.id})}">

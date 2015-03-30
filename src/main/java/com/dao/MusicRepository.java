@@ -20,7 +20,7 @@ public interface MusicRepository extends CrudRepository<Music, Integer>, MusicRe
 
     List<Music> findAll();
 
-    @Query("SELECT m FROM Music m WHERE m.title LIKE CONCAT('%',:name,'%') OR m.album LIKE CONCAT('%',:name,'%') OR m.artist LIKE CONCAT('%',:name,'%')")
+    @Query("SELECT m FROM Music m WHERE m.title LIKE CONCAT('%',:name,'%') OR m.album LIKE CONCAT('%',:name,'%') OR m.artist.name LIKE CONCAT('%',:name,'%')")
     List<Music> findByTitleOrAlbumOrArtist(@Param("name") String name);
 
 }

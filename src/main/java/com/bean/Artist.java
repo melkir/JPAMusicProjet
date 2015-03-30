@@ -2,7 +2,6 @@ package com.bean;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,7 +14,7 @@ public class Artist {
     private Integer id;
     private String name;
     private String biography;
-    @OneToMany(mappedBy = "artist")
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
     @ManyToMany(mappedBy = "artists")
     private List<Genre> genres = new ArrayList<>();
@@ -51,11 +50,11 @@ public class Artist {
         this.biography = biography;
     }
 
-    public Collection<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public Collection<Genre> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 

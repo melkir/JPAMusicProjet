@@ -5,7 +5,7 @@
 <h1>Result</h1>
 <p th:text="'Id: ' + ${music.id}" />
 <p th:text="'Titre: ' + ${music.title}" />
-<p th:text="'Artiste: ' + ${music.artist}" />
+<p th:text="'Artiste: ' + ${music.artist.name}" />
 <p th:text="'Album: ' + ${music.album}" />
 
 <a href="/music/add">Submit another music</a>
