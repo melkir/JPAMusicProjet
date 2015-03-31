@@ -14,13 +14,15 @@ public interface MusicRepository extends CrudRepository<Music, Integer>, MusicRe
 
     List<Music> findByTitle(String title);
 
-    List<Music> findByAlbum(String album);
+    @Query("SELECT m FROM Music m WHERE m.album.title LIKE CONCAT('%',:name,'%')")
+    List<Music> findByAlbumTitle(@Param("name") String album);
 
-    List<Music> findByArtist(String artist);
-
-    List<Music> findAll();
+    @Query("SELECT m FROM Music m WHERE m.artist.name LIKE CONCAT('%',:name,'%')")
+    List<Music> findByArtistName(@Param("name") String artist);
 
     @Query("SELECT m FROM Music m WHERE m.title LIKE CONCAT('%',:name,'%') OR m.album.title LIKE CONCAT('%',:name,'%') OR m.artist.name LIKE CONCAT('%',:name,'%')")
     List<Music> findByTitleOrAlbumOrArtist(@Param("name") String name);
+
+    List<Music> findAll();
 
 }

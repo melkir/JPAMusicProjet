@@ -1,19 +1,19 @@
 [
   {
     "id": 2,
-    "title": "A",
+    "title": "The 2nd Law",
     "artist": {
       "id": 1,
-      "name": "B",
+      "name": "Muse",
       "biography": null,
       "genres": []
     },
     "album": {
       "id": 1,
-      "title": "C",
+      "title": "Madness",
       "artist": {
         "id": 1,
-        "name": "B",
+        "name": "Muse",
         "biography": null,
         "genres": []
       },
@@ -21,20 +21,41 @@
     }
   },
   {
-    "id": 3,
-    "title": "Hey",
+    "id": 4,
+    "title": "3-1",
     "artist": {
-      "id": 1,
-      "name": "B",
+      "id": 2,
+      "name": "Prototyperaptor",
       "biography": null,
       "genres": []
     },
     "album": {
-      "id": 1,
-      "title": "C",
+      "id": 3,
+      "title": "Weapon of Mass Refunktion",
       "artist": {
-        "id": 1,
-        "name": "B",
+        "id": 2,
+        "name": "Prototyperaptor",
+        "biography": null,
+        "genres": []
+      },
+      "tracks": 0
+    }
+  },
+  {
+    "id": 6,
+    "title": "09/17 2007 - EP",
+    "artist": {
+      "id": 3,
+      "name": "Danger",
+      "biography": null,
+      "genres": []
+    },
+    "album": {
+      "id": 5,
+      "title": "3h16",
+      "artist": {
+        "id": 3,
+        "name": "Danger",
         "biography": null,
         "genres": []
       },
