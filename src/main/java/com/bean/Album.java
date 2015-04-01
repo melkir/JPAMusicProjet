@@ -1,6 +1,6 @@
 package com.bean;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,20 +13,11 @@ import java.util.List;
  */
 @Entity
 public class Album extends Product {
-    int tracks;
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonBackReference
+    @JsonIgnore
     List<Music> musics = new ArrayList<Music>();
 
     public Album() {
-    }
-
-    public int getTracks() {
-        return tracks;
-    }
-
-    public void setTracks(int tracks) {
-        this.tracks = tracks;
     }
 
     public List<Music> getMusics() {
@@ -39,6 +30,10 @@ public class Album extends Product {
 
     public void addMusic(Music music) {
         musics.add(music);
+    }
+
+    public void removeMusic(Music music) {
+        musics.remove(music);
     }
 
 }

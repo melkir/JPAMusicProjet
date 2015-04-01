@@ -9,7 +9,9 @@ import java.util.List;
  * Created by melkir on 30/03/15.
  */
 public interface ArtistRepository extends CrudRepository<Artist, Integer> {
+
     Artist findByName(String name);
 
     List<Artist> findAll();
+
 }

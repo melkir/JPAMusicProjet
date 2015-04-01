@@ -5,6 +5,7 @@ import com.bean.Artist;
 import com.bean.Music;
 import com.dao.AlbumRepository;
 import com.dao.ArtistRepository;
+import com.dao.MusicManagement;
 import com.dao.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +18,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/music")
-public class RestAPIController {
+public class RestAPIMusicController {
 
     @Autowired
     MusicRepository musicRepository;
     @Autowired
-    ArtistRepository artistRepository;
-    @Autowired
-    AlbumRepository albumRepository;
+    MusicManagement service;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<Music> list() {
@@ -59,8 +58,7 @@ public class RestAPIController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createMusic(@RequestBody Music music) {
         try {
-            checkIfArtistOrAlbumAlreadyExist(music);
-            musicRepository.save(music);
+            service.save(music);
             return String.format("Music [%s] successfully created", music.toString());
         } catch (Exception e) {
             return String.format("A problem occurred when creating Music [%s]", e.getMessage());
@@ -70,9 +68,8 @@ public class RestAPIController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editMusic(@PathVariable("id") Integer id, @RequestBody Music music) {
         try {
-            checkIfArtistOrAlbumAlreadyExist(music);
             music = musicRepository.update(id, music);
-            musicRepository.save(music);
+            service.save(music);
             return String.format("Music [%s] successfully updated", id);
         } catch (Exception e) {
             return String.format("A problem occurred when updating Music [%s]", e.getMessage());
@@ -88,16 +85,4 @@ public class RestAPIController {
             return String.format("A problem occurred when deleting Music [%s]", e.getMessage());
         }
     }
-
-    private void checkIfArtistOrAlbumAlreadyExist(Music music) {
-        // Check if artist name already exist
-        Artist artist = artistRepository.findByName(music.getArtist().getName());
-        if (artist != null) music.setArtist(artist);
-        else artistRepository.save(music.getArtist());
-        // Check if album name already exist
-        Album album = albumRepository.findByTitle(music.getAlbum().getTitle());
-        if (album != null) music.setAlbum(album);
-        else albumRepository.save(music.getAlbum());
-    }
-
 }

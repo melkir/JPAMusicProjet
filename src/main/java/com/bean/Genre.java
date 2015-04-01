@@ -1,6 +1,6 @@
 package com.bean;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class Genre {
     private String name;
     private String description;
     @ManyToMany(mappedBy = "genres")
-    @JsonBackReference
+    @JsonIgnore
     private List<Artist> artists = new ArrayList<Artist>();
 
     public Genre() {
@@ -53,6 +53,10 @@ public class Genre {
 
     public void addArtist(Artist artist) {
         artists.add(artist);
+    }
+
+    public void removeArtist(Artist artist) {
+        artists.remove(artist);
     }
 
 }

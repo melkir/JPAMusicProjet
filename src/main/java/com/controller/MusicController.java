@@ -1,10 +1,7 @@
 package com.controller;
 
-import com.bean.Album;
-import com.bean.Artist;
 import com.bean.Music;
-import com.dao.AlbumRepository;
-import com.dao.ArtistRepository;
+import com.dao.MusicManagement;
 import com.dao.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +20,7 @@ public class MusicController {
     @Autowired
     MusicRepository musicRepository;
     @Autowired
-    ArtistRepository artistRepository;
-    @Autowired
-    AlbumRepository albumRepository;
+    MusicManagement service;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String show(Model model) {
@@ -52,9 +47,8 @@ public class MusicController {
     @ResponseBody
     public String musicUpdate(@PathVariable("id") Integer id, @ModelAttribute Music music) {
         try {
-            checkIfArtistOrAlbumAlreadyExist(music);
             music = musicRepository.update(id, music);
-            musicRepository.save(music);
+            service.save(music);
             return String.format("Music [%s] successfully edited", id);
         } catch (Exception e) {
             return String.format("A problem occurred when editing Music [%s]", e.getMessage());
@@ -80,26 +74,9 @@ public class MusicController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String musicSubmit(@ModelAttribute Music music, Model model) {
-        checkIfArtistOrAlbumAlreadyExist(music);
-        Artist artist = artistRepository.findOne(music.getArtist().getId());
-        artist.addProduct(music);
-        Album album = albumRepository.findOne(music.getAlbum().getId());
-        album.setArtist(music.getArtist());
-//        album.addMusic(music);
-        musicRepository.save(music);
+        service.save(music);
         model.addAttribute("music", music);
         return "result";
-    }
-
-    private void checkIfArtistOrAlbumAlreadyExist(Music music) {
-        // Check if artist name already exist
-        Artist artist = artistRepository.findByName(music.getArtist().getName());
-        if (artist != null) music.setArtist(artist);
-        else artistRepository.save(music.getArtist());
-        // Check if album name already exist
-        Album album = albumRepository.findByTitle(music.getAlbum().getTitle());
-        if (album != null) music.setAlbum(album);
-        else albumRepository.save(music.getAlbum());
     }
 
 }

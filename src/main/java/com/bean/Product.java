@@ -15,7 +15,7 @@ public class Product {
     private Integer id;
     private String title;
     @ManyToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
     private Artist artist;
 
     public Product() {
