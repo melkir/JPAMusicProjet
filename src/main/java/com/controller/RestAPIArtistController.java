@@ -1,7 +1,6 @@
 package com.controller;
 
 import com.bean.Artist;
-import com.bean.Music;
 import com.dao.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
