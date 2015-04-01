@@ -1,7 +1,7 @@
 package com.controller;
 
 import com.bean.Music;
-import com.dao.MusicManagement;
+import com.services.MusicManagement;
 import com.dao.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

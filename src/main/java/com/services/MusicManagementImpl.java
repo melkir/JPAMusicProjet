@@ -1,8 +1,11 @@
-package com.dao;
+package com.services;
 
 import com.bean.Album;
 import com.bean.Artist;
 import com.bean.Music;
+import com.dao.AlbumRepository;
+import com.dao.ArtistRepository;
+import com.dao.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

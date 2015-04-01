@@ -1,11 +1,7 @@
 package com.controller;
 
-import com.bean.Album;
-import com.bean.Artist;
 import com.bean.Music;
-import com.dao.AlbumRepository;
-import com.dao.ArtistRepository;
-import com.dao.MusicManagement;
+import com.services.MusicManagement;
 import com.dao.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
