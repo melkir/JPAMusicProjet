@@ -1,14 +1,17 @@
 package com.bean;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by melkir on 15/03/15.
  */
 @Entity
 public class Music extends Product {
-    @OneToOne
+    @ManyToOne
+    @JsonManagedReference
     private Album album;
 
     public Music() {

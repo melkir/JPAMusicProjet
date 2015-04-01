@@ -16,7 +16,6 @@ import java.util.List;
 /**
  * Created by melkir on 13/03/15.
  */
-
 @Controller
 @RequestMapping(value = "/music")
 public class MusicController {
@@ -82,10 +81,11 @@ public class MusicController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String musicSubmit(@ModelAttribute Music music, Model model) {
         checkIfArtistOrAlbumAlreadyExist(music);
-//        Artist artist = artistRepository.findOne(music.getArtist().getId());
-//        artist.addProduct(music);
-//        Album album = albumRepository.findOne(music.getAlbum().getId());
-//        album.setArtist(music.getArtist());
+        Artist artist = artistRepository.findOne(music.getArtist().getId());
+        artist.addProduct(music);
+        Album album = albumRepository.findOne(music.getAlbum().getId());
+        album.setArtist(music.getArtist());
+//        album.addMusic(music);
         musicRepository.save(music);
         model.addAttribute("music", music);
         return "result";

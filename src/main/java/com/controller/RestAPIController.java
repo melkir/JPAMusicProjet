@@ -92,11 +92,11 @@ public class RestAPIController {
     private void checkIfArtistOrAlbumAlreadyExist(Music music) {
         // Check if artist name already exist
         Artist artist = artistRepository.findByName(music.getArtist().getName());
-        if(artist != null) music.setArtist(artist);
+        if (artist != null) music.setArtist(artist);
         else artistRepository.save(music.getArtist());
         // Check if album name already exist
         Album album = albumRepository.findByTitle(music.getAlbum().getTitle());
-        if(album != null) music.setAlbum(album);
+        if (album != null) music.setAlbum(album);
         else albumRepository.save(music.getAlbum());
     }
 

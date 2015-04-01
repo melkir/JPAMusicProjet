@@ -1,6 +1,7 @@
 package com.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,10 +17,11 @@ public class Artist {
     private Integer id;
     private String name;
     private String biography;
-    @OneToMany
-    @JsonIgnore
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private List<Product> products = new ArrayList<Product>();
     @ManyToMany
+    @JsonManagedReference
     private List<Genre> genres = new ArrayList<Genre>();
 
     public Artist() {

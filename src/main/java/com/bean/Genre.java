@@ -1,10 +1,9 @@
 package com.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ public class Genre {
     private String name;
     private String description;
     @ManyToMany(mappedBy = "genres")
-    @JsonIgnore
+    @JsonBackReference
     private List<Artist> artists = new ArrayList<Artist>();
 
     public Genre() {

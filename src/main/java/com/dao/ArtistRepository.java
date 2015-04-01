@@ -10,5 +10,6 @@ import java.util.List;
  */
 public interface ArtistRepository extends CrudRepository<Artist, Integer> {
     Artist findByName(String name);
+
     List<Artist> findAll();
 }
