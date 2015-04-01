@@ -1,12 +1,10 @@
 package com.controller;
 
 import com.bean.Album;
+import com.bean.Artist;
 import com.dao.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +28,36 @@ public class RestAPIAlbumController {
         return albumRepository.findOne(id);
     }
 
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createAlbum(@RequestBody Album album) {
+        try {
+            albumRepository.save(album);
+            return String.format("Album [%s] successfully created", album.toString());
+        } catch (Exception e) {
+            return String.format("A problem occurred when creating Artist [%s]", e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String editAlbum(@PathVariable("id") Integer id, @RequestBody Album a) {
+        try {
+            Album album = albumRepository.findOne(id);
+            album.setTitle(a.getTitle());
+            album.setArtist(a.getArtist());
+            albumRepository.save(album);
+            return String.format("Album [%s] successfully updated", id);
+        } catch (Exception e) {
+            return String.format("A problem occurred when updating Album [%s]", e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public String deleteById(@PathVariable("id") Integer id) {
+        try {
+            albumRepository.delete(id);
+            return String.format("Album [%s] successfully deleted", id); // uses the delete() method inherited from CrudRepository
+        } catch (Exception e) {
+            return String.format("A problem occurred when deleting Album [%s]", e.getMessage());
+        }
+    }
 }
