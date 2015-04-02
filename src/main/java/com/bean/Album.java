@@ -36,4 +36,16 @@ public class Album extends Product {
         musics.remove(music);
     }
 
+    @Override
+    public String toString() {
+        String res;
+        res = "Album{"
+                + "id=" + this.getId() + ";"
+                + "title=" + this.getTitle() + ";"
+                + "artist=" + this.getArtist().getName() + ";"
+                + "musics=";
+        for (Music music : musics) res += music.toString() + ",";
+        res += "}\n";
+        return res;
+    }
 }

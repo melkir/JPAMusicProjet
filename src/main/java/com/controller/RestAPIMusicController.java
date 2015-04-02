@@ -1,8 +1,8 @@
 package com.controller;
 
 import com.bean.Music;
-import com.services.MusicManagement;
 import com.dao.MusicRepository;
+import com.services.MusicManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +21,7 @@ public class RestAPIMusicController {
     @Autowired
     MusicManagement service;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Music> list() {
         return musicRepository.findAll();
     }

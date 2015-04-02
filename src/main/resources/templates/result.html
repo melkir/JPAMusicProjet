@@ -3,10 +3,14 @@
 <head th:include="layout :: htmlhead" th:with="title='Result'"></head>
 <body>
 <h1>Result</h1>
-<p th:text="'Id: ' + ${music.id}" />
-<p th:text="'Titre: ' + ${music.title}" />
-<p th:text="'Artiste: ' + ${music.artist.name}" />
-<p th:text="'Album: ' + ${music.album.title}" />
+
+<p th:text="'Id: ' + ${music.id}"/>
+
+<p th:text="'Titre: ' + ${music.title}"/>
+
+<p th:text="'Artiste: ' + ${music.artist.name}"/>
+
+<p th:text="'Album: ' + ${music.album.title}"/>
 
 <a href="/music/add">Submit another music</a>
 </body>

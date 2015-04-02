@@ -17,7 +17,7 @@ public class RestAPIArtistController {
     @Autowired
     ArtistRepository artistRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Artist> list() {
         return artistRepository.findAll();
     }

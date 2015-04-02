@@ -31,4 +31,13 @@ public class Music extends Product {
         this.album = album;
     }
 
+    @Override
+    public String toString() {
+        String res;
+        res = "Music{id=" + this.getId() + ";"
+                + "title=" + this.getTitle() + ";"
+                + "artist=" + this.getArtist().getName() + ";"
+                + "album=" + this.getAlbum().getTitle() + "}\n";
+        return res;
+    }
 }

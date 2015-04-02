@@ -17,7 +17,7 @@ public class RestAPIAlbumController {
     @Autowired
     AlbumRepository albumRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Album> list() {
         return albumRepository.findAll();
     }

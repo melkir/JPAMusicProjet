@@ -50,4 +50,13 @@ public class Product {
         this.artist = artist;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", artist=" + artist.getName() +
+                '}';
+    }
+
 }

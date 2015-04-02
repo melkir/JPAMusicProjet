@@ -1,8 +1,8 @@
 package com.controller;
 
 import com.bean.Music;
-import com.services.MusicManagement;
 import com.dao.MusicRepository;
+import com.services.MusicManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,16 +22,11 @@ public class MusicController {
     @Autowired
     MusicManagement service;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String show(Model model) {
-        final List<Music> list = musicRepository.findAll();
-        model.addAttribute("listMusics", list);
-        return "tabmusic";
-    }
-
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public String find(@PathVariable String name, Model model) {
-        final List<Music> list = musicRepository.findByTitleOrAlbumOrArtist(name);
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String search(@RequestParam(value = "search", defaultValue = "") String search, Model model) {
+        final List<Music> list;
+        if (search.equals("")) list = musicRepository.findAll();
+        else list = musicRepository.findByTitleOrAlbumOrArtist(search);
         model.addAttribute("listMusics", list);
         return "tabmusic";
     }

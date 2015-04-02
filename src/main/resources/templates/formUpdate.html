@@ -4,29 +4,34 @@
 
 <body>
 
-<form class="form-horizontal" action="#" th:action="@{/music/edit/{id}(id=${music.id})}" th:object="${music}" method="post">
+<form class="form-horizontal" action="#" th:action="@{/music/edit/{id}(id=${music.id})}" th:object="${music}"
+      method="post">
     <fieldset>
         <legend>Modification d'une musique</legend>
         <div class="form-group">
             <label class="col-md-2 control-label" for="titleinput">Titre</label>
+
             <div class="col-md-2">
                 <input id="titleinput" type="text" class="form-control input-md" th:field="*{title}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label" for="artistinput">Artiste</label>
+
             <div class="col-md-2">
                 <input id="artistinput" type="text" class="form-control input-md" th:field="*{artist.name}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label" for="albuminput">Album</label>
+
             <div class="col-md-2">
                 <input id="albuminput" type="text" class="form-control input-md" th:field="*{album.title}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label" for="submitbutton"></label>
+
             <div class="col-md-2">
                 <button id="submitbutton" class="btn btn-primary pull-right">Valider</button>
             </div>

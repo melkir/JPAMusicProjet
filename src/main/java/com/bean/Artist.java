@@ -86,4 +86,14 @@ public class Artist {
         genres.remove(genre);
     }
 
+    @Override
+    public String toString() {
+        return "Artist{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", biography='" + biography + '\'' +
+                ", products=" + products +
+                ", genres=" + genres +
+                '}';
+    }
 }
