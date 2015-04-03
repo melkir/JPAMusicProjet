@@ -61,7 +61,7 @@ public class RestAPIMusicController {
         }
     }
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public String editMusic(@PathVariable("id") Integer id, @RequestBody Music music) {
         try {
             music = musicRepository.update(id, music);

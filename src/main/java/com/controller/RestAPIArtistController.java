@@ -37,7 +37,7 @@ public class RestAPIArtistController {
         }
     }
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public String editArtist(@PathVariable("id") Integer id, @RequestBody Artist a) {
         try {
             Artist artist = artistRepository.findOne(id);

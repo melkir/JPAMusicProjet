@@ -37,7 +37,7 @@ public class RestAPIAlbumController {
         }
     }
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public String editAlbum(@PathVariable("id") Integer id, @RequestBody Album a) {
         try {
             Album album = albumRepository.findOne(id);
