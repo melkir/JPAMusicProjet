@@ -12,12 +12,6 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'spring-boot'
-apply plugin: 'war'
-
-war {
-    baseName = 'project'
-    version = '0.0.1-SNAPSHOT'
-}
 
 repositories {
     mavenCentral()

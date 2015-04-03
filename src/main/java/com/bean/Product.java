@@ -1,4 +1,4 @@
-ackage com.bean;
+package com.bean;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
