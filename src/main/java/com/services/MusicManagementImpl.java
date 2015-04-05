@@ -67,6 +67,30 @@ public class MusicManagementImpl implements MusicManagement {
         return music;
     }
 
+    public void loadMusicFromJson() {
+        URL url = MusicManagementImpl.class.getResource("/playlist.json");
+        ObjectMapper mapper = new ObjectMapper();
+        List<MusicSimplified> musics = null;
+        try {
+            musics = mapper.readValue(url, new TypeReference<List<MusicSimplified>>() {
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert musics != null;
+        Album album;
+        Artist artist;
+        Music music;
+        for (MusicSimplified m : musics) {
+            album = new Album();
+            artist = new Artist();
+            album.setTitle(m.getAlbum());
+            artist.setName(m.getArtist());
+            music = new Music(m.getTitle(), artist, album);
+            save(music);
+        }
+    }
+
     @XmlRootElement
     private static class MusicSimplified {
         @JsonProperty("title")
@@ -110,30 +134,6 @@ public class MusicManagementImpl implements MusicManagement {
                     ", artist='" + artist + '\'' +
                     ", album='" + album + '\'' +
                     '}';
-        }
-    }
-
-    public void loadMusicFromJson() {
-        URL url = MusicManagementImpl.class.getResource("/playlist.json");
-        ObjectMapper mapper = new ObjectMapper();
-        List<MusicSimplified> musics = null;
-        try {
-            musics = mapper.readValue(url, new TypeReference<List<MusicSimplified>>() {
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assert musics != null;
-        Album album;
-        Artist artist;
-        Music music;
-        for (MusicSimplified m : musics) {
-            album = new Album();
-            artist = new Artist();
-            album.setTitle(m.getAlbum());
-            artist.setName(m.getArtist());
-            music = new Music(m.getTitle(), artist, album);
-            save(music);
         }
     }
 
