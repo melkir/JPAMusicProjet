@@ -25,10 +25,21 @@ public class MusicController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String search(@RequestParam(value = "search", defaultValue = "") String search, Model model) {
         final List<Music> list;
-        if (search.equals("")) list = musicRepository.findAll();
+        if (search == null || search.equals("")) list = musicRepository.findAll();
         else list = musicRepository.findByTitleOrAlbumOrArtist(search);
         model.addAttribute("listMusics", list);
         return "tabmusic";
+    }
+
+    @RequestMapping(value = "/load", method = RequestMethod.GET)
+    @ResponseBody
+    public String loadFromJson() {
+        try {
+            service.loadMusicFromJson();
+            return "Playlist successfully loaded";
+        } catch (Exception e) {
+            return "A problem occurred when uploading playlist";
+        }
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
