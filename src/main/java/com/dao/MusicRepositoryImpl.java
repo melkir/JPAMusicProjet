@@ -16,9 +16,10 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom {
     @Override
     public Music update(Integer id, Music m) {
         Music music = em.find(Music.class, id);
-        music.setArtist(m.getArtist());
-        music.setAlbum(m.getAlbum());
+        music.getArtist().setName(m.getArtist().getName());
+        music.getAlbum().setTitle(m.getAlbum().getTitle());
         music.setTitle(m.getTitle());
+        em.persist(music);
         return music;
     }
 

@@ -11,6 +11,8 @@ public interface MusicManagement {
 
     Music save(Music music);
 
+    Music update(Integer id, Music music);
+
     void loadMusicFromJson();
 
 }

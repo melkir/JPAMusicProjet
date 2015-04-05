@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout :: htmlhead" th:with="title='Liste de musiques'"></head>
+<head th:include="layout :: htmlhead" th:with="title='Liste des musiques'"></head>
 
 <body>
 
 <div class="text-center" style="padding-bottom: 5px; padding-top: 5px">
-    <a class="btn btn-primary" role="button" th:href="@{add}">Ajouter une musique</a>
+    <a class="btn btn-primary" role="button" th:href="@{/music/add}">Ajouter une musique</a>
+    <a class="btn btn-primary" role="button" th:href="@{/music/load}">Charger la playlist</a>
 </div>
 <div class="col-sm-3 col-md-3 pull-right">
     <form class="navbar-form" role="search" action="#" th:action="@{/music}" method="get">
@@ -38,12 +39,12 @@
             <a th:href="@{/album/id/{id}(id=${music.album.id})}"><p th:text="${music.album.title}"></p></a>
         </td>
         <td>
-            <a th:href="@{edit/{id}(id=${music.id})}">
+            <a th:href="@{/music/edit/{id}(id=${music.id})}">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             </a>
         </td>
         <td>
-            <a th:href="@{delete/{id}(id=${music.id})}">
+            <a th:href="@{/music/delete/{id}(id=${music.id})}">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             </a>
         </td>

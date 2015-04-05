@@ -64,8 +64,7 @@ public class RestAPIMusicController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public String editMusic(@PathVariable("id") Integer id, @RequestBody Music music) {
         try {
-            music = musicRepository.update(id, music);
-            service.save(music);
+            service.update(id, music);
             return String.format("Music [%s] successfully updated", id);
         } catch (Exception e) {
             return String.format("A problem occurred when updating Music [%s]", e.getMessage());

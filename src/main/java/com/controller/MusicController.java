@@ -38,7 +38,7 @@ public class MusicController {
             service.loadMusicFromJson();
             return "Playlist successfully loaded";
         } catch (Exception e) {
-            return "A problem occurred when uploading playlist";
+            return String.format("A problem occurred when uploading playlist [%s]", e.getMessage());
         }
     }
 
@@ -53,8 +53,7 @@ public class MusicController {
     @ResponseBody
     public String musicUpdate(@PathVariable("id") Integer id, @ModelAttribute Music music) {
         try {
-            music = musicRepository.update(id, music);
-            service.save(music);
+            service.update(id, music);
             return String.format("Music [%s] successfully edited", id);
         } catch (Exception e) {
             return String.format("A problem occurred when editing Music [%s]", e.getMessage());

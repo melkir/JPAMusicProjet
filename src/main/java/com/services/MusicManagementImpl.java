@@ -7,7 +7,6 @@ import com.dao.AlbumRepository;
 import com.dao.ArtistRepository;
 import com.dao.MusicRepository;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,48 +33,36 @@ public class MusicManagementImpl implements MusicManagement {
         this.albumRepository = albumRepository;
     }
 
-    private void updateInfo(Music music) {
-        Artist musicArtist = music.getArtist();
-        Album musicAlbum = music.getAlbum();
-        // Check if artist name already exist
-        Artist artist = artistRepository.findByName(musicArtist.getName());
-        // Check if album name already exist
-        Album album = albumRepository.findByTitle(musicAlbum.getTitle());
-        if (artist != null && album != null) {
-            music.setArtist(artist);
+    private void updateArtist(Music music) {
+        Artist artist = artistRepository.findByName(music.getArtist().getName());
+        if (artist != null) music.setArtist(artist);
+        else artist = artistRepository.save(music.getArtist());
+        artist.addProduct(music);
+    }
+
+    private void updateAlbum(Music music) {
+        Album album = albumRepository.findByTitle(music.getAlbum().getTitle());
+        if (album != null) {
             music.setAlbum(album);
-            artist.addProduct(music);
-            album.addMusic(music);
-        } else if (artist != null) {
-            album = musicAlbum;
-            album.addMusic(music);
-            albumRepository.save(album);
-            music.setArtist(artist);
-            artist.addProduct(album);
-            artist.addProduct(music);
-        } else if (album != null) {
-            artist = musicArtist;
-            artist.addProduct(music);
-            music.setAlbum(album);
-            album.setArtist(artist);
-            album.addMusic(music);
-            artistRepository.save(artist);
-            albumRepository.save(album);
         } else {
-            artist = musicArtist;
-            album = musicAlbum;
-            album.setArtist(artist);
-            album.addMusic(music);
-            artist.addProduct(album);
-            artist.addProduct(music);
-            artistRepository.save(artist);
-            albumRepository.save(album);
+            album = albumRepository.save(music.getAlbum());
+            album.setArtist(music.getArtist());
+            music.getArtist().addProduct(album);
         }
+        album.addMusic(music);
     }
 
     @Override
     public Music save(Music music) {
-        updateInfo(music);
+        updateArtist(music);
+        updateAlbum(music);
+        musicRepository.save(music);
+        return music;
+    }
+
+    @Override
+    public Music update(Integer id, Music music) {
+        music = musicRepository.update(id, music);
         musicRepository.save(music);
         return music;
     }
@@ -131,7 +118,8 @@ public class MusicManagementImpl implements MusicManagement {
         ObjectMapper mapper = new ObjectMapper();
         List<MusicSimplified> musics = null;
         try {
-            musics = mapper.readValue(url, new TypeReference<List<MusicSimplified>>(){});
+            musics = mapper.readValue(url, new TypeReference<List<MusicSimplified>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
