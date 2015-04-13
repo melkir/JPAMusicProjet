@@ -7,7 +7,7 @@
 <div data-th-replace="layout :: top-nav" th:with="type='music'"></div>
 
 <div class="container">
-    <h4>Liste des musiques</h4>
+    <h4 th:text="'Liste des musiques: ' + ${nbMusic} + ' musiques, ' + ${nbAlbum} + ' albums, ' + ${nbArtist} + ' artistes'"></h4>
     <table class="table table-bordered">
         <thead>
         <tr>

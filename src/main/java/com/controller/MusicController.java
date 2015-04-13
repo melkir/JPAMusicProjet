@@ -28,6 +28,9 @@ public class MusicController {
         if (search == null || search.equals("")) list = musicRepository.findAll();
         else list = musicRepository.findByTitleOrAlbumOrArtist(search);
         model.addAttribute("listMusics", list);
+        model.addAttribute("nbMusic", service.countMusics());
+        model.addAttribute("nbAlbum", service.countAlbums());
+        model.addAttribute("nbArtist", service.countArtists());
         return "tabmusic";
     }
 

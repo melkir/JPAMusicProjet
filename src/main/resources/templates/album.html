@@ -6,13 +6,12 @@
 
 <div data-th-replace="layout :: top-nav"></div>
 <div class="container">
-    <p th:text="'Id: ' + ${album.id}"/>
 
-    <p th:text="'Title: ' + ${album.title}"/>
+    <h4 th:text="'Title: ' + ${album.title}"></h4>
 
-    <p th:text="'Artiste: ' + ${album.artist.name}"/>
+    <h4 th:text="'Artiste: ' + ${album.artist.name}"></h4>
 
-    <p>Liste des musiques: </p>
+    <h4>Liste des musiques: </h4>
 
     <ul class="list-group col-md-4">
         <li th:each="music : ${album.musics}" class="list-group-item" th:text="${music.title}"></li>

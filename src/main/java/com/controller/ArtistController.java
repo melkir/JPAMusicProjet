@@ -25,6 +25,7 @@ public class ArtistController {
     public String show(Model model) {
         final List<Artist> list = artistRepository.findAll();
         model.addAttribute("listArtists", list);
+        model.addAttribute("nbArtist", artistRepository.count());
         return "tabartist";
     }
 

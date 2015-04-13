@@ -11,6 +11,12 @@ public interface MusicManagement {
 
     Music update(Integer id, Music music);
 
+    long countMusics();
+
+    long countAlbums();
+
+    long countArtists();
+
     void loadMusicFromJson();
 
 }

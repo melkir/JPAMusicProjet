@@ -25,6 +25,7 @@ public class AlbumController {
     public String show(Model model) {
         final List<Album> list = albumRepository.findAll();
         model.addAttribute("listAlbums", list);
+        model.addAttribute("nbAlbum", albumRepository.count());
         return "tabalbum";
     }
 

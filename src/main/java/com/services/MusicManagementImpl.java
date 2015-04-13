@@ -68,6 +68,21 @@ public class MusicManagementImpl implements MusicManagement {
         return music;
     }
 
+    @Override
+    public long countMusics() {
+        return musicRepository.count();
+    }
+
+    @Override
+    public long countAlbums() {
+        return albumRepository.count();
+    }
+
+    @Override
+    public long countArtists() {
+        return artistRepository.count();
+    }
+
     public void loadMusicFromJson() {
         URL url = MusicManagementImpl.class.getResource("/playlist.json");
         ObjectMapper mapper = new ObjectMapper();
