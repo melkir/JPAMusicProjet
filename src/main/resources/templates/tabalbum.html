@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Liste des albums'"></head>
+
+<body>
+
+<div data-th-replace="layout :: top-nav"></div>
+<div class="container">
+    <h4>Liste des albums</h4>
+    <table class="table table-bordered">
+        <thead>
+        <th>Titre</th>
+        <th>Artist</th>
+        <th># musiques</th>
+        </thead>
+        <tbody>
+        <tr th:each="album : ${listAlbums}">
+            <td>
+                <a th:href="@{/album/id/{id}(id=${album.id})}"><p th:text="${album.title}"></p></a>
+            </td>
+            <td>
+                <a th:href="@{/artist/id/{id}(id=${album.artist.id})}"><p th:text="${album.artist.name}"></p></a>
+            </td>
+            <td th:text="${#lists.size(album.musics)}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

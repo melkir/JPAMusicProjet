@@ -5,4 +5,35 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.css}" rel="stylesheet"/>
 </head>
+<body>
+<nav data-th-fragment="top-nav" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/}">JPAMusic</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/music}">Musiques</a></li>
+                <li><a th:href="@{/album}">Albums</a></li>
+                <li><a th:href="@{/artist}">Artists</a></li>
+            </ul>
+        </div>
+        <form class="navbar-form navbar-left" role="search" th:action="@{/music}" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="search"/>
+
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+        </form>
+        <div class="nav navbar-nav navbar-right">
+            <a class="btn btn-default navbar-btn" role="button" th:href="@{/music/add}"><i
+                    class="glyphicon glyphicon-plus-sign"></i> Ajouter une musique</a>
+            <a class="btn btn-default navbar-btn" role="button" th:href="@{/music/load}"><i
+                    class="glyphicon glyphicon-upload"></i> Charger la playlist</a>
+        </div>
+    </div>
+</nav>
+</body>
 </html>

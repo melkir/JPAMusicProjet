@@ -16,6 +16,7 @@ public class Music extends Product {
     private Album album;
 
     public Music() {
+        this.setType("Musique");
     }
 
     public Music(String title, Artist artist, Album album) {

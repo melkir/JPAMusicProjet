@@ -56,6 +56,7 @@ public class MusicManagementImpl implements MusicManagement {
     public Music save(Music music) {
         updateArtist(music);
         updateAlbum(music);
+        music.setType("Musique");
         musicRepository.save(music);
         return music;
     }

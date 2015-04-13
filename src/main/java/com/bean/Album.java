@@ -18,6 +18,7 @@ public class Album extends Product {
     List<Music> musics = new ArrayList<Music>();
 
     public Album() {
+        this.setType("Album");
     }
 
     public List<Music> getMusics() {

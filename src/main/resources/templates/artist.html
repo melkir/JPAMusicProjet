@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Liste des albums'"></head>
+
+<body>
+
+<div data-th-replace="layout :: top-nav"></div>
+
+<div class="container">
+
+    <p th:text="'Id: ' + ${artist.id}"/>
+
+    <p th:text="'Nom: ' + ${artist.name}"/>
+
+    <p th:text="'Biographie: ' + ${artist.biography}"/>
+
+    <p>Liste des produits : </p>
+    <ul class="list-group col-md-4">
+        <li th:each="product : ${artist.products}" class="list-group-item"
+            th:text="${product.type} + ' ' + ${product.title}"></li>
+    </ul>
+
+    <p>Liste des genres : </p>
+    <ul class="list-group col-md-4">
+        <li th:each="genre : ${artist.genres}" class="list-group-item" th:text="${genre.name}"></li>
+    </ul>
+
+</div>
+
+</body>
+</html>

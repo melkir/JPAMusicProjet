@@ -4,10 +4,10 @@ import com.bean.Artist;
 import com.dao.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -22,17 +22,17 @@ public class ArtistController {
     ArtistRepository artistRepository;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    @ResponseBody
-    public String show() {
+    public String show(Model model) {
         final List<Artist> list = artistRepository.findAll();
-        return list.toString();
+        model.addAttribute("listArtists", list);
+        return "tabartist";
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String findById(@PathVariable int id) {
+    public String findById(@PathVariable int id, Model model) {
         Artist artist = artistRepository.findOne(id);
-        return artist.toString();
+        model.addAttribute("artist", artist);
+        return "artist";
     }
 
 }

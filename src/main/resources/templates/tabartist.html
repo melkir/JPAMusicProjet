@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Liste des artistes'"></head>
+
+<body>
+
+<div data-th-replace="layout :: top-nav"></div>
+<div class="container">
+    <h4>Liste des artistes</h4>
+    <table class="table table-bordered">
+        <thead>
+        <th>Nom</th>
+        <th>Biographie</th>
+        <th># produits</th>
+        </thead>
+        <tbody>
+        <tr th:each="artist : ${listArtists}">
+            <td>
+                <a th:href="@{/artist/id/{id}(id=${artist.id})}"><p th:text="${artist.name}"></p></a>
+            </td>
+            <td th:text="${artist.biography}"></td>
+            <td th:text="${#lists.size(artist.products)}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

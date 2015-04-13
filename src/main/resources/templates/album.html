@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Album'"></head>
+
+<body>
+
+<div data-th-replace="layout :: top-nav"></div>
+<div class="container">
+    <p th:text="'Id: ' + ${album.id}"/>
+
+    <p th:text="'Title: ' + ${album.title}"/>
+
+    <p th:text="'Artiste: ' + ${album.artist.name}"/>
+
+    <p>Liste des musiques: </p>
+
+    <ul class="list-group col-md-4">
+        <li th:each="music : ${album.musics}" class="list-group-item" th:text="${music.title}"></li>
+    </ul>
+
+</div>
+
+</body>
+
+</html>

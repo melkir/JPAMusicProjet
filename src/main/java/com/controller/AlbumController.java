@@ -4,10 +4,10 @@ import com.bean.Album;
 import com.dao.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -22,17 +22,17 @@ public class AlbumController {
     AlbumRepository albumRepository;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    @ResponseBody
-    public String show() {
+    public String show(Model model) {
         final List<Album> list = albumRepository.findAll();
-        return list.toString();
+        model.addAttribute("listAlbums", list);
+        return "tabalbum";
     }
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String findById(@PathVariable int id) {
+    public String findById(@PathVariable int id, Model model) {
         Album album = albumRepository.findOne(id);
-        return album.toString();
+        model.addAttribute("album", album);
+        return "album";
     }
 
 }
